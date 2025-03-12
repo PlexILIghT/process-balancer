@@ -13,10 +13,10 @@ class Process
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $requiredMemory = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $requiredCpu = null;
 
     #[ORM\ManyToOne(inversedBy: 'processes')]
