@@ -13,6 +13,14 @@ class ProcessBalancer
 
     public function assignProcess(Process $process): void
     {
+
+        if ($process->getRequiredMemory() <= 0 || $process->getRequiredCpu() <= 0) {
+            throw new \InvalidArgumentException(
+                'Required memory and CPU must be positive integers. Got memory: '.
+                $process->getRequiredMemory().', CPU: '.$process->getRequiredCpu()
+            );
+        }
+
         $machines = $this->em->getRepository(WorkerMachine::class)->findAll();
         $bestMachine = null;
         $minLoad = PHP_INT_MAX;
